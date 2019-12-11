@@ -8,37 +8,41 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { ManagementComponent } from './management/management.component';
+import { TourComponent } from './tour/tour.component';
 
-/*const appRoutes: Routes = [
+const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'trip'
+    redirectTo: 'tour'
   }, {
-    path: 'trip/city',
-    component: CityComponent
+    path: 'tour',
+    component: TourComponent
   }, {
-    path: 'country',
-    component: CountryComponent
-  }, {
+    path: 'management',
+    component: ManagementComponent
+  }/*, {
     path: 'countrylanguage',
     component: CountryLanguageComponent
   }, {
     path: 'login',
     component: LoginComponent
-  }
-];*/
+  }*/
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TourSearchFormComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    ManagementComponent,
+    TourComponent
   ],
   imports: [
     BrowserModule,
-    /*RouterModule.forRoot(appRoutes),*/
+    RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FormsModule
   ],
