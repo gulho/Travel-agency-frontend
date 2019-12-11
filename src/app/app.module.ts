@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -8,20 +9,31 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { ManagementComponent } from './management/management.component';
 import { TourComponent } from './tour/tour.component';
+import { CityManageComponent } from './city-manage/city-manage.component';
+import { CountryManageComponent } from './country-manage/country-manage.component';
+
 
 const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'tour'
-  }, {
+  },
+  {
+    path: 'management',
+    pathMatch: 'full',
+    /*redirectTo: 'management/city'*/
+    redirectTo: 'management/country'
+  },{
     path: 'tour',
     component: TourComponent
   }, {
-    path: 'management',
-    component: ManagementComponent
+    path: 'management/city',
+    component: CityManageComponent
+  }, {
+    path: 'management/country',
+    component: CountryManageComponent
   }/*, {
     path: 'countrylanguage',
     component: CountryLanguageComponent
@@ -37,11 +49,13 @@ const appRoutes: Routes = [
     HeaderComponent,
     TourSearchFormComponent,
     UserRegisterComponent,
-    ManagementComponent,
-    TourComponent
+    TourComponent,
+    CityManageComponent,
+    CountryManageComponent
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     FormsModule
