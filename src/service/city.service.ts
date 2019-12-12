@@ -16,7 +16,11 @@ export class CityService {
     return this.httpClient.get(this.CITY_SERVICE_API, {});
   }
 
-  saveCity(cityForEdit: City) {
-    
+  public saveCity(cityForEdit: City) {
+    this.httpClient.post(this.CITY_SERVICE_API, cityForEdit).subscribe(res => console.log(res));
+  }
+
+  public delete(cityForDelete: City) {
+    this.httpClient.delete(this.CITY_SERVICE_API + cityForDelete.id);
   }
 }

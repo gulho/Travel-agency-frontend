@@ -1,9 +1,9 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {City} from "../../model/City";
+import {City} from "../../../model/City";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {CityService} from "../../service/city.service";
-import {Country} from "../../model/Country";
-import {CountryService} from "../../service/country.service";
+import {CityService} from "../../../service/city.service";
+import {Country} from "../../../model/Country";
+import {CountryService} from "../../../service/country.service";
 
 @Component({
   selector: 'app-city-manage',
@@ -14,13 +14,14 @@ export class CityManageComponent implements OnInit {
   cities: City[];
   countries: Country[]
   cityForEdit: City;
-  cityForDelete: any;
+  cityForDelete: City;
 
   constructor(public modalService: NgbModal, private cityService: CityService, private countryService: CountryService) { }
 
   ngOnInit() {
     this.loadAllCities();
     this.countryService.getAllCountries().subscribe((data: Country[]) => this.countries = data);
+    console.log(this.countries);
   }
 
   editCity(cityEdit: TemplateRef<any>, city?: City) {
@@ -39,10 +40,11 @@ export class CityManageComponent implements OnInit {
 
   saveCity() {
     this.cityService.saveCity(this.cityForEdit);
+    this.modalService.dismissAll();
   }
 
   deleteCity() {
-
+    this.cityService.delete(this.cityForDelete)
   }
 
   private loadAllCities() {

@@ -4,7 +4,7 @@ export class City {
   id: number;
   name: string;
   description: string;
-  country: Country
+  country: Country;
 
 
   constructor(id: number, name: string, description: string, country: Country) {

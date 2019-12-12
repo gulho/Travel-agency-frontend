@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+.fa-trash-alt:hover {
+  color: red;
+}
+.fa-edit:hover {
+  color: green;
+}

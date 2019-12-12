@@ -10,8 +10,9 @@ import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { TourComponent } from './tour/tour.component';
-import { CityManageComponent } from './city-manage/city-manage.component';
-import { CountryManageComponent } from './country-manage/country-manage.component';
+import { CityManageComponent } from './management/city-manage/city-manage.component';
+import { CountryManageComponent } from './management/country-manage/country-manage.component';
+import { AirportManageComponent } from './management/airport-manage/airport-manage.component';
 
 
 const appRoutes: Routes = [
@@ -34,6 +35,9 @@ const appRoutes: Routes = [
   }, {
     path: 'management/country',
     component: CountryManageComponent
+  }, {
+    path: 'management/airport',
+    component: AirportManageComponent
   }/*, {
     path: 'countrylanguage',
     component: CountryLanguageComponent
@@ -51,7 +55,8 @@ const appRoutes: Routes = [
     UserRegisterComponent,
     TourComponent,
     CityManageComponent,
-    CountryManageComponent
+    CountryManageComponent,
+    AirportManageComponent,
   ],
   imports: [
     BrowserModule,

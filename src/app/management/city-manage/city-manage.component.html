@@ -20,7 +20,7 @@
   <tr *ngFor="let city of cities">
     <td>{{city.id}}</td>
     <td>{{city.name}}</td>
-    <td>{{city.country}}</td>
+    <td>{{city.country.name}}</td>
     <td>{{city.description}}</td>
     <td>
       <a (click)="editCity(cityEdit, city)"><i class="far fa-edit"></i></a>&nbsp;
@@ -53,7 +53,7 @@
         </div>
         <div class="col">
           <select id="formCountryContinent" name="formCountryContinent" class="form-control" [(ngModel)]="cityForEdit.country">
-            <option *ngFor="let country of countries" value="{{country.countryCode}}">{{country.name}}</option>
+            <option *ngFor="let country of countries" value="{{country}}">{{country.name}}</option>
           </select>
         </div>
       </div>

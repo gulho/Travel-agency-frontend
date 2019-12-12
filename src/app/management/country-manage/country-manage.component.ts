@@ -1,9 +1,9 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {Continent} from "../../model/Continent";
-import {CountryService} from "../../service/country.service";
-import {Country} from "../../model/Country";
+import {Continent} from "../../../model/Continent";
+import {CountryService} from "../../../service/country.service";
+import {Country} from "../../../model/Country";
 
 @Component({
   selector: 'app-country-manage',
