@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Continent} from "../../model/Continent";
+import {CountryService} from "../service/country.service";
+import {Country} from "../../model/Country";
 
 @Component({
   selector: 'app-country-manage',
@@ -10,19 +12,48 @@ import {Continent} from "../../model/Continent";
 })
 export class CountryManageComponent implements OnInit {
 
-  continents = Continent
+  continents = Continent;
   keys = Object.keys;
+  countries: Country[];
 
-  constructor(public modalService: NgbModal) { }
+  countryForEdit: Country;
+  countryForDelete: Country;
+
+  constructor(public modalService: NgbModal, private countryService: CountryService) { }
 
   ngOnInit() {
+    this.countryService.getAllCountries().subscribe((data: Country[]) => this.countries = data );
   }
 
-  saveCity(f: NgForm) {
-
+  editCountry(countryEdit, country?: Country) {
+    if (country == undefined) {
+      this.countryForEdit = new Country("", "", Continent.EUROPE, "");
+    }
+    else {
+      this.countryForEdit = country;
+    }
+    this.modalService.open(countryEdit, {});
   }
 
-  editCity(cityEdit) {
-    this.modalService.open(cityEdit, {});
+  public saveCountry(f: NgForm) {
+/*    const countryCode = f.value.formCountryCode.trim();
+    const name = f.value.formCountryName.trim();
+    const description = f.value.formCountryDescription.trim();
+    const continent = f.value.formCountryContinent;*/
+
+
+    /*this.countryService.saveCountry(new Country(countryCode, name, continent,description));*/
+    this.countryService.saveCountry(this.countryForEdit);
+    this.modalService.dismissAll();
+  }
+
+  openDeleteCountryDialog(deleteCountry: TemplateRef<any>, country: Country) {
+    this.countryForDelete = country;
+    this.modalService.open(deleteCountry, {});
+  }
+
+  deleteCountry() {
+    this.countryService.deleteCountry(this.countryForDelete);
+    this.modalService.dismissAll();
   }
 }
