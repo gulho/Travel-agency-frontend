@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Continent} from "../../model/Continent";
-import {CountryService} from "../service/country.service";
+import {CountryService} from "../../service/country.service";
 import {Country} from "../../model/Country";
 
 @Component({
@@ -22,7 +22,7 @@ export class CountryManageComponent implements OnInit {
   constructor(public modalService: NgbModal, private countryService: CountryService) { }
 
   ngOnInit() {
-    this.countryService.getAllCountries().subscribe((data: Country[]) => this.countries = data );
+    this.countryService.getAllCountries().subscribe((data: Country[]) => this.countries = data);
   }
 
   editCountry(countryEdit, country?: Country) {
@@ -36,13 +36,7 @@ export class CountryManageComponent implements OnInit {
   }
 
   public saveCountry(f: NgForm) {
-/*    const countryCode = f.value.formCountryCode.trim();
-    const name = f.value.formCountryName.trim();
-    const description = f.value.formCountryDescription.trim();
-    const continent = f.value.formCountryContinent;*/
 
-
-    /*this.countryService.saveCountry(new Country(countryCode, name, continent,description));*/
     this.countryService.saveCountry(this.countryForEdit);
     this.modalService.dismissAll();
   }

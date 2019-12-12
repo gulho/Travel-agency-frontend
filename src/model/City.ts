@@ -1,8 +1,16 @@
 import {Country} from "./Country";
 
 export class City {
-  private id: number;
-  private name: string;
-  private description: string;
-  private country: Country
+  id: number;
+  name: string;
+  description: string;
+  country: Country
+
+
+  constructor(id: number, name: string, description: string, country: Country) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.country = country;
+  }
 }
