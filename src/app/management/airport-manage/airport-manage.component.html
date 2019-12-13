@@ -18,13 +18,13 @@
   </thead>
   <tbody>
   <tr *ngFor="let airport of airports">
-    <td>{{airport.countryCode}}</td>
+    <td>{{airport.code}}</td>
     <td>{{airport.name}}</td>
-    <td>{{airport.continent}}</td>
+    <td>{{airport.city.name}}</td>
     <td>{{airport.description}}</td>
     <td>
       <a (click)="editAirport(airportEdit, airport)"><i class="far fa-edit"></i></a>&nbsp;
-      <a (click)="openDeleteAirportDialog(deleteCountryModal, airport)"><i class="far fa-trash-alt"></i></a>
+      <a (click)="openDeleteAirportDialog(deleteAirportModal, airport)"><i class="far fa-trash-alt"></i></a>
     </td>
   </tr>
   </tbody>
@@ -41,36 +41,36 @@
     <form>
       <div class="row m-1">
         <div class="col">
-          <label for="formCountryCode">Country Code:</label>
+          <label for="formAirportCode">Airport Code:</label>
         </div>
         <div class="col">
-          <input type="text" id="formCountryCode" name="formCountryCode" [(ngModel)]="airportForEdit.countryCode" class="form-control">
-        </div>
-      </div>
-      <div class="row m-1">
-        <div class="col">
-          <label for="formCountryName">Country name:</label>
-        </div>
-        <div class="col">
-          <input type="text" id="formCountryName" name="formCountryName" [(ngModel)]="airportForEdit.name"  class="form-control">
+          <input type="text" id="formAirportCode" name="formAirportCode" [(ngModel)]="airportForEdit.code" class="form-control">
         </div>
       </div>
       <div class="row m-1">
         <div class="col">
-          <label for="formCountryContinent">Continent:</label>
+          <label for="formAirportName">Airport name:</label>
         </div>
         <div class="col">
-          <select id="formCountryContinent" name="formCountryContinent" class="form-control" [(ngModel)]="airportForEdit.continent">
-            <option *ngFor="let city of cities" value="{{city}}">{{coty.name}}</option>
+          <input type="text" id="formAirportName" name="formAirportName" [(ngModel)]="airportForEdit.name" class="form-control">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formAirportCity">City:</label>
+        </div>
+        <div class="col">
+          <select id="formAirportCity" name="formAirportCity" class="form-control" [(ngModel)]="airportForEdit.city">
+            <option *ngFor="let city of cities" value="{{city}}">{{city.name}}</option>
           </select>
         </div>
       </div>
       <div class="row m-1">
         <div class="col">
-          <label for="formCountryDescription">Description</label>
+          <label for="formAirportDescription">Description</label>
         </div>
         <div class="col">
-          <textarea id="formCountryDescription" name="formCountryDescription" [(ngModel)]="airportForEdit.description" class="form-control"></textarea>
+          <textarea id="formAirportDescription" name="formAirportDescription" [(ngModel)]="airportForEdit.description" class="form-control"></textarea>
         </div>
       </div>
 
@@ -81,7 +81,7 @@
     <button type="button" class="btn btn-success" (click)="saveAirport()">Save</button>
   </div>
 </ng-template>
-<ng-template #deleteCountryModal let-modal>
+<ng-template #deleteAirportModal let-modal>
   <div class="modal-header">
     <h4>Add new student</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('X')">
@@ -93,6 +93,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="airportCity()">Delete</button>
+    <button type="button" class="btn btn-primary" (click)="airportDelete()">Delete</button>
   </div>
 </ng-template>

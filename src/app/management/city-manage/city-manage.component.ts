@@ -41,10 +41,12 @@ export class CityManageComponent implements OnInit {
   saveCity() {
     this.cityService.saveCity(this.cityForEdit);
     this.modalService.dismissAll();
+    this.loadAllCities();
   }
 
   deleteCity() {
-    this.cityService.delete(this.cityForDelete)
+    this.cityService.delete(this.cityForDelete);
+    this.loadAllCities();
   }
 
   private loadAllCities() {

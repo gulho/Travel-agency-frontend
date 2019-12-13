@@ -21,6 +21,6 @@ export class CityService {
   }
 
   public delete(cityForDelete: City) {
-    this.httpClient.delete(this.CITY_SERVICE_API + cityForDelete.id);
+    this.httpClient.delete(this.CITY_SERVICE_API + cityForDelete.id).subscribe(res => console.log(res));
   }
 }
