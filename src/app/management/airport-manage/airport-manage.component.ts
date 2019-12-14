@@ -29,6 +29,7 @@ export class AirportManageComponent implements OnInit {
   }
 
   public saveAirport() {
+    console.log(this.airportForEdit);
     this.airportService.saveAirport(this.airportForEdit);
     this.modalService.dismissAll();
   }
@@ -46,6 +47,7 @@ export class AirportManageComponent implements OnInit {
     } else {
       this.airportForEdit = airport;
     }
+    console.log(this.airportForEdit);
     this.modalService.open(airportEdit, {});
   }
 

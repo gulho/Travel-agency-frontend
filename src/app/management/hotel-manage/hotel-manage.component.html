@@ -1,0 +1,101 @@
+<div class="col-md-12">
+  <h5>Hotel management</h5>
+</div>
+
+<div class="col-sm-12">
+  <button class="btn btn-primary" (click)="editHotel(hotelEdit)">Add</button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">City</th>
+    <th scope="col">Standard</th>
+    <th scope="col">Description</th>
+    <th scope="">&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let hotel of hotels">
+    <td>{{hotel.id}}</td>
+    <td>{{hotel.name}}</td>
+    <td>{{hotel.city.name}}</td>
+    <td>{{hotel.standard}}</td>
+    <td>{{hotel.description}}</td>
+    <td>
+      <a (click)="editHotel(hotelEdit, hotel)"><i class="far fa-edit"></i></a>&nbsp;
+      <a (click)="openDeleteHotelDialog(deleteHotelModal, hotel)"><i class="far fa-trash-alt"></i></a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #hotelEdit let-modal>
+  <div class="modal-header">
+    <h4>Add new hotel</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('X')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body container">
+    <form #f="ngForm">
+      <div class="row m-1">
+        <div class="col">
+          <label for="formHotelName">Hotel name:</label>
+        </div>
+        <div class="col">
+          <input type="text" id="formHotelName" name="formHotelName" [(ngModel)]="hotelForEdit.name" class="form-control">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formHotelCity">City:</label>
+        </div>
+        <div class="col">
+          <select id="formHotelCity" name="formHotelCity" class="form-control" [(ngModel)]="hotelForEdit.city">
+            <option *ngFor="let city of cities" value="{{city}}">{{city.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label form="formHotelStandard">Standard:</label>
+        </div>
+        <div class="col">
+          <ngb-rating [(rate)]="hotelForEdit.standard" class="rating-faces" max="5" [starTemplate]="t"></ngb-rating>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formHotelDescription">Description</label>
+        </div>
+        <div class="col">
+          <textarea id="formHotelDescription" name="formHotelDescription" [(ngModel)]="hotelForEdit.description" class="form-control"></textarea>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-success" (click)="saveHotel()">Save</button>
+  </div>
+</ng-template>
+<ng-template #deleteHotelModal let-modal>
+  <div class="modal-header">
+    <h4>Add new student</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('X')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body container">
+    Delete "{{hotelForDelete.name}}" city?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="deleteHotel()">Delete</button>
+  </div>
+</ng-template>
+

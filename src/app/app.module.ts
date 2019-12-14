@@ -13,6 +13,7 @@ import { TourComponent } from './tour/tour.component';
 import { CityManageComponent } from './management/city-manage/city-manage.component';
 import { CountryManageComponent } from './management/country-manage/country-manage.component';
 import { AirportManageComponent } from './management/airport-manage/airport-manage.component';
+import { HotelManageComponent } from './management/hotel-manage/hotel-manage.component';
 
 
 const appRoutes: Routes = [
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
     pathMatch: 'full',
     /*redirectTo: 'management/city'*/
     redirectTo: 'management/country'
-  },{
+  }, {
     path: 'tour',
     component: TourComponent
   }, {
@@ -38,6 +39,9 @@ const appRoutes: Routes = [
   }, {
     path: 'management/airport',
     component: AirportManageComponent
+  }, {
+    path: 'management/hotel',
+    component: HotelManageComponent
   }/*, {
     path: 'countrylanguage',
     component: CountryLanguageComponent
@@ -57,6 +61,7 @@ const appRoutes: Routes = [
     CityManageComponent,
     CountryManageComponent,
     AirportManageComponent,
+    HotelManageComponent,
   ],
   imports: [
     BrowserModule,
