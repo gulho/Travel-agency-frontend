@@ -14,6 +14,7 @@ import { CityManageComponent } from './management/city-manage/city-manage.compon
 import { CountryManageComponent } from './management/country-manage/country-manage.component';
 import { AirportManageComponent } from './management/airport-manage/airport-manage.component';
 import { HotelManageComponent } from './management/hotel-manage/hotel-manage.component';
+import { TripManageComponent } from './management/trip-manage/trip-manage.component';
 
 
 const appRoutes: Routes = [
@@ -42,10 +43,10 @@ const appRoutes: Routes = [
   }, {
     path: 'management/hotel',
     component: HotelManageComponent
-  }/*, {
-    path: 'countrylanguage',
-    component: CountryLanguageComponent
   }, {
+    path: 'management/trip',
+    component: TripManageComponent
+  }/*, {
     path: 'login',
     component: LoginComponent
   }*/
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
     CountryManageComponent,
     AirportManageComponent,
     HotelManageComponent,
+    TripManageComponent,
   ],
   imports: [
     BrowserModule,

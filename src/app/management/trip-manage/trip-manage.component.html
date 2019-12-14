@@ -1,0 +1,172 @@
+<div class="col-md-12">
+  <h5>Trip management</h5>
+</div>
+
+<div class="col-sm-12">
+  <button class="btn btn-primary" (click)="editTrip(tripEdit)">Add</button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">From</th>
+    <th scope="col">To</th>
+    <th scope="col">Hotel</th>
+    <th scope="col">Date from</th>
+    <th scope="col">Date to</th>
+    <th scope="col">Meal type</th>
+    <th scope="">&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let trip of trips">
+    <td>{{trip.id}}</td>
+    <td>{{trip.name}}</td>
+    <td>{{trip.from.name}}</td>
+    <td>{{trip.to.name}}</td>
+    <td>{{trip.hotel.name}}</td>
+    <td>{{trip.fromDate |date : "dd.MM.yyyy"}}</td>
+    <td>{{trip.toDate |date : "dd.MM.yyyy"}}</td>
+    <td>{{trip.mealType}}</td>
+    <td>
+      <a (click)="editTrip(tripEdit, trip)"><i class="far fa-edit"></i></a>&nbsp;
+      <a (click)="openDeleteTripDialog(deleteCityModal, trip)"><i class="far fa-trash-alt"></i></a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #tripEdit let-modal>
+  <div class="modal-header">
+    <h4>Add new trip</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('X')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body container">
+    <form #f="ngForm">
+      <div class="row m-1">
+        <div class="col">
+          <label for="formCountryName">Trip name:</label>
+        </div>
+        <div class="col">
+          <input type="text" id="formCountryName" name="formCountryName" [(ngModel)]="tripForEdit.name"  class="form-control">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formAirportFrom">Airport from:</label>
+        </div>
+        <div class="col">
+          <select id="formAirportFrom" name="formAirportFrom" class="form-control" [(ngModel)]="tripForEdit.from">
+            <option *ngFor="let airport of airports" value="{{airport}}">{{airport.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formAirportTo">Airport to:</label>
+        </div>
+        <div class="col">
+          <select id="formAirportTo" name="formAirportTo" class="form-control" [(ngModel)]="tripForEdit.to">
+            <option *ngFor="let airport of airports" value="{{airport}}">{{airport.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formTripHotel">Hotel</label>
+        </div>
+        <div class="col">
+          <select id="formTripHotel" name="formTripHotel" class="form-control" [(ngModel)]="tripForEdit.hotel">
+            <option *ngFor="let hotel of hotels" value="{{hotel}}">{{hotel.name}}</option>
+          </select>
+        </div>
+      </div>
+        <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                        outsideDays="hidden">
+        </ngb-datepicker>
+
+        <ng-template #t let-date let-focused="focused">
+          <span class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">{{ date.day }}</span>
+        </ng-template>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formTripMealType">Meal Type</label>
+        </div>
+        <div class="col">
+          <select id="formTripMealType" name="formTripMealType" class="form-control">
+            <option *ngFor="let key of keys(mealTypes)" value="{{key}}">{{mealTypes[key]}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formTripAdultPrice">Adult price:</label>
+        </div>
+        <div class="col">
+          <input type="number" id="formTripAdultPrice" name="formTripAdultPrice" [(ngModel)]="tripForEdit.priceForAdult"  class="form-control">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formTripChildrenPrice">Children price:</label>
+        </div>
+        <div class="col">
+          <input type="number" id="formTripChildrenPrice" name="formTripChildrenPrice" [(ngModel)]="tripForEdit.priceFroChild"  class="form-control">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formTripAdultBeds">Adult beds:</label>
+        </div>
+        <div class="col">
+          <input type="number" id="formTripAdultBeds" name="formTripAdultBeds" [(ngModel)]="tripForEdit.adultBeds"  class="form-control">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formTripChildrenBeds">Children beds:</label>
+        </div>
+        <div class="col">
+          <input type="number" id="formTripChildrenBeds" name="formTripChildrenBeds" [(ngModel)]="tripForEdit.childBeds"  class="form-control">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formTripIsPromoted">Is promoted:</label>
+        </div>
+        <div class="col">
+          <input type="checkbox" id="formTripIsPromoted" name="formTripIsPromoted" [(ngModel)]="tripForEdit.isPromoted"  class="form-check-input">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-success" (click)="saveTrip()">Save</button>
+  </div>
+</ng-template>
+<ng-template #deleteCityModal let-modal>
+  <div class="modal-header">
+    <h4>Add new student</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('X')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body container">
+    Delete "{{tripFroDelete.name}}" city?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="deleteTrip()">Delete</button>
+  </div>
+</ng-template>
+
