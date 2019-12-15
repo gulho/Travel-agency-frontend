@@ -1,23 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isManagement; else elseBlock">
+  <i class="fas fa-umbrella-beach navbar-brand" href="/management"></i>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Tours</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Your tours</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-        <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown3" role="button">
-          Manage
-        </a>
-      </li>
-    </ul>
+  <div class="collapse navbar-collapse" id="navbarManagement">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" [class.active]="navBarActive=='trip'" href="/management/trip">Trips</a>
+      <a class="nav-item nav-link" [class.active]="navBarActive=='city'" href="/management/city">Cities</a>
+      <a class="nav-item nav-link" [class.active]="navBarActive=='hotel'" href="/management/hotel">Hotels</a>
+      <a class="nav-item nav-link" [class.active]="navBarActive=='airport'" href="/management/airport">Airports</a>
+      <a class="nav-item nav-link" [class.active]="navBarActive=='country'" href="/management/country">Countries</a>
+    </div>
   </div>
 </nav>
+<ng-template #elseBlock>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <i class="fas fa-umbrella-beach navbar-brand" href="/trip"></i>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" [class.active]="navBarActive=='trip'" href="trip">Trips</a>
+        <a class="nav-item nav-link" [class.active]="navBarActive=='country'" href="country">Countries</a>
+        <a class="nav-item nav-link" [class.active]="navBarActive=='city'" href="city">Cities</a>
+      </div>
+<!--      <ul class="navbar-nav">
+        <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+          <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown3" role="button">
+            Manage
+          </a>
+        </li>
+      </ul>-->
+    </div>
+  </nav>
+</ng-template>
