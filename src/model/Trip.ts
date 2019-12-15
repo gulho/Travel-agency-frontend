@@ -1,7 +1,6 @@
 import {Airport} from './Airport';
 import {Hotel} from './Hotel';
 import {MealType} from './MealType';
-import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 
 export class Trip {
   id: number;
@@ -9,17 +8,18 @@ export class Trip {
   from: Airport;
   to: Airport;
   hotel: Hotel;
-  fromDate: Date;
-  toDate: Date;
-  mealType: MealType;
+  fromDate: string;
+  toDate: string;
+  mealType: string;
   priceForAdult: number;
   priceFroChild: number;
   adultBeds: number;
   childBeds: number;
   isPromoted: boolean;
 
-  constructor(name: string, from: Airport, to: Airport, hotel: Hotel, fromDate: Date, toDate: Date, mealType: MealType,
+  constructor(id: number, name: string, from: Airport, to: Airport, hotel: Hotel, fromDate: string, toDate: string, mealType: string,
               priceForAdult: number, priceFroChild: number, adultBeds: number, childBeds: number, isPromoted: boolean) {
+    this.id = id;
     this.name = name;
     this.from = from;
     this.to = to;

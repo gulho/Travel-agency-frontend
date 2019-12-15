@@ -44,11 +44,16 @@ export class TripManageComponent implements OnInit {
 
   public editTrip(tripEdit: TemplateRef<any>, trip?: Trip) {
     if (trip === undefined) {
-      this.tripForEdit = new Trip('', this.airports[0], this.airports[0], this.hotels[0], new Date(), new Date(), MealType.RO,
+      this.tripForEdit = new Trip(null, '', this.airports[0], this.airports[0], this.hotels[0], '2019-12-20', '2019-12-20', "RO",
         0, 0, 0, 0, false);
     } else {
       this.tripForEdit = trip;
     }
+    console.log(this.tripForEdit);
+    const fromDate = this.tripForEdit.fromDate.split('-');
+    const toDate = this.tripForEdit.toDate.split('-');
+    this.fromDate = new NgbDate(Number(fromDate[0]), Number(fromDate[1]), Number(fromDate[2]));
+    this.toDate = new NgbDate(Number(toDate[0]), Number(toDate[1]), Number(toDate[2]));
     this.modalService.open(tripEdit, {});
   }
 
@@ -58,8 +63,8 @@ export class TripManageComponent implements OnInit {
   }
 
   public saveTrip() {
-    this.tripForEdit.fromDate = new Date(this.fromDate.year, this.fromDate.month, this.fromDate.day);
-    this.tripForEdit.toDate = new Date(this.toDate.year, this.toDate.month, this.toDate.day);
+    this.tripForEdit.fromDate = this.fromDate.year + '-' + this.fromDate.month + '-' +  this.fromDate.day;
+    this.tripForEdit.toDate = this.toDate.year + '-' + this.toDate.month + '-' + this.toDate.day;
     this.tripService.saveTrip(this.tripForEdit);
     this.modalService.dismissAll();
   }
@@ -89,5 +94,22 @@ export class TripManageComponent implements OnInit {
 
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
+  }
+
+  private compareAirports(a1: Airport, a2: Airport) {
+    if (a1 != null && a2 != null) {
+      if (a1.code === a2.code) {
+        return true;
+      }
+    }
+    return false;
+  }
+  private compareHotels(a1: Hotel, a2: Hotel) {
+    if (a1 != null && a2 != null) {
+      if (a1.id === a2.id) {
+        return true;
+      }
+    }
+    return false;
   }
 }

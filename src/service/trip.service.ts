@@ -16,7 +16,8 @@ export class TripService {
   }
 
   public saveTrip(trip: Trip) {
-    this.httpClient.post(this.TRIP_SERVICE_URL, {}).subscribe(ret => console.log(ret));
+    console.log(trip);
+    this.httpClient.post(this.TRIP_SERVICE_URL, trip).subscribe(ret => console.log(ret));
   }
 
   public deleteTrip(trip: Trip) {

@@ -60,8 +60,8 @@
           <label for="formAirportFrom">Airport from:</label>
         </div>
         <div class="col">
-          <select id="formAirportFrom" name="formAirportFrom" class="form-control" [(ngModel)]="tripForEdit.from">
-            <option *ngFor="let airport of airports" value="{{airport}}">{{airport.name}}</option>
+          <select id="formAirportFrom" name="formAirportFrom" class="form-control" [(ngModel)]="tripForEdit.from" [compareWith]="compareAirports">
+            <option *ngFor="let airport of airports" [ngValue]="airport">{{airport.name}}</option>
           </select>
         </div>
       </div>
@@ -70,8 +70,8 @@
           <label for="formAirportTo">Airport to:</label>
         </div>
         <div class="col">
-          <select id="formAirportTo" name="formAirportTo" class="form-control" [(ngModel)]="tripForEdit.to">
-            <option *ngFor="let airport of airports" value="{{airport}}">{{airport.name}}</option>
+          <select id="formAirportTo" name="formAirportTo" class="form-control" [(ngModel)]="tripForEdit.to" [compareWith]="compareAirports">
+            <option *ngFor="let airport of airports" [ngValue]="airport">{{airport.name}}</option>
           </select>
         </div>
       </div>
@@ -80,8 +80,8 @@
           <label for="formTripHotel">Hotel</label>
         </div>
         <div class="col">
-          <select id="formTripHotel" name="formTripHotel" class="form-control" [(ngModel)]="tripForEdit.hotel">
-            <option *ngFor="let hotel of hotels" value="{{hotel}}">{{hotel.name}}</option>
+          <select id="formTripHotel" name="formTripHotel" class="form-control" [(ngModel)]="tripForEdit.hotel" [compareWith]="compareHotels">
+            <option *ngFor="let hotel of hotels" [ngValue]="hotel">{{hotel.name}}</option>
           </select>
         </div>
       </div>
@@ -103,7 +103,7 @@
         </div>
         <div class="col">
           <select id="formTripMealType" name="formTripMealType" class="form-control">
-            <option *ngFor="let key of keys(mealTypes)" value="{{key}}">{{mealTypes[key]}}</option>
+            <option *ngFor="let key of keys(mealTypes)" [value]="key" [selected]="key==tripForEdit.mealType">{{mealTypes[key]}}</option>
           </select>
         </div>
       </div>
