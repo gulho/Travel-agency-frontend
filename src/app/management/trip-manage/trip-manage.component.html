@@ -147,11 +147,19 @@
           <input type="checkbox" id="formTripIsPromoted" name="formTripIsPromoted" [(ngModel)]="tripForEdit.isPromoted"  class="form-check-input">
         </div>
       </div>
+      <div class="row m-1">
+        <div class="col">
+          <label for="formTripImageSelector">Select images</label>
+        </div>
+        <div class="col">
+          <input type="file" id="formTripImageSelector" name="formTripImageSelector" multiple accept="image/jpeg" (change)="getFileDetails($event)" />
+        </div>
+      </div>
     </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
-    <button type="button" class="btn btn-success" (click)="saveTrip()">Save</button>
+    <button type="button" class="btn btn-success" (click)="saveTrip(f)">Save</button>
   </div>
 </ng-template>
 <ng-template #deleteCityModal let-modal>
@@ -162,7 +170,7 @@
     </button>
   </div>
   <div class="modal-body container">
-    Delete "{{tripFroDelete.name}}" city?
+    Delete "{{tripFroDelete.name}}" trip?
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>

@@ -75,4 +75,4 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export const SERVER_URL = 'http://localhost:8081/';
+export const SERVER_URL = 'http://localhost:8080/';
