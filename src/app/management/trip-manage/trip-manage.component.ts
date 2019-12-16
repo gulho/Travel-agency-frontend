@@ -22,7 +22,7 @@ export class TripManageComponent implements OnInit {
   airports: Airport[];
   tripFroDelete: Trip;
   hotels: Hotel[];
-  images: string[];
+  images: string[] = [];
   remark = '';
 
   private fromDate: NgbDate;
@@ -69,28 +69,22 @@ export class TripManageComponent implements OnInit {
   public saveTrip(form: NgForm) {
     this.tripForEdit.fromDate = this.fromDate.year + '-' + this.fromDate.month + '-' +  this.fromDate.day;
     this.tripForEdit.toDate = this.toDate.year + '-' + this.toDate.month + '-' + this.toDate.day;
-    //this.tripService.saveTrip(this.tripForEdit);
+    this.tripService.saveTrip(this.tripForEdit);
 
     console.log(form.value.formTripImageSelector);
     console.log(form.value.formTripChildrenBeds);
     //if (form.value.formTripImageSelector)
-    //this.modalService.dismissAll();
+    //
 
     const frmData = new FormData();
     for (var i = 0; i < this.images.length; i++) {
-      frmData.append('fileUpload', this.images[i]);
+      frmData.append('file', this.images[i]);
       if (i === 0) {
         frmData.append('remark', this.remark);
       }
     }
     this.imageService.saveImage(frmData, this.tripForEdit.id);
-/*    this.httpService.post('http://localhost:50401/api/FileUpload/UploadFiles', frmData).subscribe(
-      data => {
-        // SHOW A MESSAGE RECEIVED FROM THE WEB API.
-        this.sMsg = data as string;
-        console.log(this.sMsg);
-      }
-    );*/
+    this.modalService.dismissAll();
   }
 
   public deleteTrip() {
@@ -144,6 +138,6 @@ export class TripManageComponent implements OnInit {
     for (const file of e.target.files) {
       this.images.push(file);
     }
-    this.images.push(e.target.files[0]);
+    console.log(this.images);
   }
 }
