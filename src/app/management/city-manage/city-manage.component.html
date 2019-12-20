@@ -5,7 +5,7 @@
 <div class="col-sm-12">
   <button class="btn btn-primary" (click)="editCity(cityEdit)">Add</button>
 </div>
-
+<br>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -49,20 +49,20 @@
       </div>
       <div class="row m-1">
         <div class="col">
-          <label for="formCountryContinent">Continent:</label>
+          <label for="formCountryCountry">Country:</label>
         </div>
         <div class="col">
-          <select id="formCountryContinent" name="formCountryContinent" class="form-control" [(ngModel)]="cityForEdit.country">
-            <option *ngFor="let country of countries" value="{{country}}">{{country.name}}</option>
+          <select id="formCountryCountry" name="formCountryCountry" class="form-control" [(ngModel)]="cityForEdit.country" [compareWith]="compareCountry">
+            <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
           </select>
         </div>
       </div>
       <div class="row m-1">
         <div class="col">
-          <label for="formCountryDescription">Description</label>
+          <label for="formCityDescription">Description</label>
         </div>
         <div class="col">
-          <textarea id="formCountryDescription" name="formCountryDescription" [(ngModel)]="cityForEdit.description" class="form-control"></textarea>
+          <textarea id="formCityDescription" name="formCityDescription" [(ngModel)]="cityForEdit.description" class="form-control"></textarea>
         </div>
       </div>
 

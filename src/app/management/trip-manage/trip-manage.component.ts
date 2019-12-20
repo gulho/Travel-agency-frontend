@@ -49,7 +49,7 @@ export class TripManageComponent implements OnInit {
   public editTrip(tripEdit: TemplateRef<any>, trip?: Trip) {
     if (trip === undefined) {
       this.tripForEdit = new Trip(null, '', this.airports[0], this.airports[0], this.hotels[0], '2019-12-20', '2019-12-20', "RO",
-        0, 0, 0, 0, false);
+        0, 0, 0, 0, false, []);
     } else {
       this.tripForEdit = trip;
     }

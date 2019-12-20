@@ -15,16 +15,12 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) {
     this.router.events.subscribe( val => {
       if (val instanceof NavigationStart) {
-        //console.log(val);
-        if (val.url.startsWith('/management/')) {
+        if (val.url.startsWith('/management')) {
           this.isManagement = true;
           this.navBarActive = val.url.substring(12);
-          //console.log(this.navBarActive);
         } else {
           this.navBarActive = val.url.substring(1);
-          //console.log(this.navBarActive);
         }
-        console.log(this.navBarActive);
       }} );
   }
 

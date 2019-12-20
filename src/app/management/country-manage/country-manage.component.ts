@@ -27,7 +27,7 @@ export class CountryManageComponent implements OnInit {
 
   editCountry(countryEdit, country?: Country) {
     if (country == undefined) {
-      this.countryForEdit = new Country("", "", Continent.EUROPE, "");
+      this.countryForEdit = new Country('', '', 'EUROPE', "");
     }
     else {
       this.countryForEdit = country;
@@ -36,7 +36,6 @@ export class CountryManageComponent implements OnInit {
   }
 
   public saveCountry(f: NgForm) {
-
     this.countryService.saveCountry(this.countryForEdit);
     this.modalService.dismissAll();
   }

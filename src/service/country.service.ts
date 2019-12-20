@@ -26,7 +26,7 @@ export class CountryService {
         if (ret == true) {
           return true;
         } else {
-          return ret;
+          return false;
         }
       }
     );

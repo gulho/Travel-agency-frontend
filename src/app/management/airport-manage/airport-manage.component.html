@@ -5,7 +5,7 @@
 <div class="col-sm-12">
   <button class="btn btn-primary" (click)="editAirport(airportEdit)">Add</button>
 </div>
-
+<br>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -60,8 +60,8 @@
           <label for="formAirportCity">City:</label>
         </div>
         <div class="col">
-          <select id="formAirportCity" name="formAirportCity" class="form-control" [(ngModel)]="airportForEdit.city">
-            <option *ngFor="let city of cities" value="{{city}}">{{city.name}}</option>
+          <select id="formAirportCity" name="formAirportCity" class="form-control" [(ngModel)]="airportForEdit.city" [compareWith]="compareCity">
+            <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
           </select>
         </div>
       </div>

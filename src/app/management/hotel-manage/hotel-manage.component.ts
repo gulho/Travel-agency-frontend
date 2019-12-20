@@ -5,6 +5,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {HotelService} from '../../../service/hotel.service';
 import {CityService} from '../../../service/city.service';
 import {Airport} from '../../../model/Airport';
+import {Country} from "../../../model/Country";
 
 @Component({
   selector: 'app-hotel-manage',
@@ -55,5 +56,14 @@ export class HotelManageComponent implements OnInit {
   public deleteHotel() {
     this.hotelService.deleteHotel(this.hotelForDelete);
     this.modalService.dismissAll();
+  }
+
+  private compareCountry(c1: Country, c2: Country) {
+    if (c1 != null && c2 != null) {
+      if (c1.countryCode === c2.countryCode) {
+        return true;
+      }
+    }
+    return false;
   }
 }

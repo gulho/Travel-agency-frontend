@@ -52,4 +52,13 @@ export class CityManageComponent implements OnInit {
   private loadAllCities() {
      this.cityService.getAllCities().subscribe((data: City[]) => this.cities = data);
   }
+
+  private compareCountry(c1: Country, c2: Country) {
+    if (c1 != null && c2 != null) {
+      if (c1.countryCode === c2.countryCode) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   {
     path: 'management',
     pathMatch: 'full',
-    redirectTo: 'management/country'
+    redirectTo: 'management/trip'
   }, {
     path: 'trip',
     component: TripComponent

@@ -55,4 +55,13 @@ export class AirportManageComponent implements OnInit {
     this.airportForDelete = airport;
     this.modalService.open(deleteAirportModal, {});
   }
+
+  private compareCity(c1: City, c2: City) {
+    if (c1 != null && c2 != null) {
+      if (c1.id === c2.id) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

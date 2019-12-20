@@ -5,7 +5,7 @@
 <div class="col-sm-12">
   <button class="btn btn-primary" (click)="editCountry(countryEdit)">Add</button>
 </div>
-
+<br/>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -20,7 +20,7 @@
     <tr *ngFor="let country of countries">
       <td>{{country.countryCode}}</td>
       <td>{{country.name}}</td>
-      <td>{{country.continent}}</td>
+      <td>{{continents[country.continent]}}</td>
       <td>{{country.description}}</td>
       <td>
         <a (click)="editCountry(countryEdit, country)"><i class="far fa-edit"></i></a>&nbsp;
@@ -44,12 +44,12 @@
           <label for="formCountryCode">Country Code:</label>
         </div>
         <div class="col">
-          <input type="text" id="formCountryCode" name="formCountryCode" [(ngModel)]="countryForEdit.countryCode" class="form-control">
+          <input type="text" id="formCountryCode" name="formCountryCode" [(ngModel)]="countryForEdit.countryCode" class="form-control" maxlength="3" minlength="3">
         </div>
       </div>
       <div class="row m-1">
         <div class="col">
-          <label for="formCountryName">Country name:</label>
+          <label for="formCountryName" maxlength="255">Country name:</label>
         </div>
         <div class="col">
           <input type="text" id="formCountryName" name="formCountryName" [(ngModel)]="countryForEdit.name"  class="form-control">
@@ -61,7 +61,7 @@
         </div>
         <div class="col">
           <select id="formCountryContinent" name="formCountryContinent" class="form-control" [(ngModel)]="countryForEdit.continent">
-            <option *ngFor="let key of keys(continents)" value="{{key}}">{{continents[key]}}</option>
+            <option *ngFor="let key of keys(continents)" value="{{key}}" [selected]="key==countryForEdit.continent">{{continents[key]}}</option>
           </select>
         </div>
       </div>
