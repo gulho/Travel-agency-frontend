@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col">
+  <h3>{{trip.name}}</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <img [src]="SERVER_URL + '/image/' + trip.images[0].id" />
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col">
+    <span><i class="fas fa-plane-departure"></i>From {{trip.from.name}}</span>
+  </div>
+  <div class="col">
+    <span><i class="fas fa-plane-arrival"></i>To {{trip.to.name}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <span>From: {{trip.fromDate |date : "dd.MM.yyyy"}}</span>
+  </div>
+  <div class="col">
+    <span>To: {{trip.toDate |date : "dd.MM.yyyy"}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <span>Meal type: {{mealType[trip.mealType]}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <span>Price for adults: {{trip.priceForAdult}}</span>
+  </div>
+  <div class="col">
+    <span>Place left: {{trip.adultBeds}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <span>Price for children: {{trip.priceFroChild}}</span>
+  </div>
+  <div class="col">
+    <span>Place left: {{trip.childBeds}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <img *ngFor="let image of trip.images" [src]="SERVER_URL + '/image/' + image.id" width="100px" class="img-thumbnail" (click)="openBigImage(tripImage, image.id)">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary">Buy tour</button>
+  </div>
+</div>
+<br>
+<br>
+<ng-template #tripImage let-modal>
+  <div class="modal-header">
+    <h4>{{trip.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('X')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body container">
+    <img class="img-fluid" [src]="SERVER_URL + '/image/' + currentImageId" >
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>

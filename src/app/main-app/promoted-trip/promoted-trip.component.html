@@ -1,1 +1,11 @@
-<p>promoted-trip works!</p>
+<ngb-carousel #carousel interval="2000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
+  <ng-template ngbSlide *ngFor="let trip of promotedTrips">
+    <div class="carousel-caption">
+      <h3>{{trip.name}}</h3>
+    </div>
+    <a [href]="'/trip/' + trip.id">
+      <div class="picsum-img-wrapper">
+        <img [src]="SERVER_URL + '/image/' + trip.images[0].id" [alt]="trip.images[0].fileName" alt="{{trip.name}}">
+      </div>
+    </a>
+  </ng-template>

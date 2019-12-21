@@ -31,14 +31,10 @@ export class HotelManageComponent implements OnInit {
 
   public editHotel(hotelEdit: TemplateRef<any>, hotel?: Hotel) {
     if (hotel === undefined) {
-      this.hotelForEdit = new Hotel(null, 'AAA', '', 0, this.cities[0]);
-      this.hotelForEdit = new Hotel(1, 'AAA', '', 0, this.cities[0]);
-      console.log(this.hotelForEdit);
+      this.hotelForEdit = new Hotel(null, '', '', 0, this.cities[0]);
     } else {
       this.hotelForEdit = hotel;
     }
-    console.log(new Airport("", "", "", this.cities[0]));
-    console.log(new Hotel(50, "String", "Description", 5, this.cities[0]));
     this.modalService.open(hotelEdit, {});
   }
 

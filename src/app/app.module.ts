@@ -15,6 +15,7 @@ import { HotelManageComponent } from './management/hotel-manage/hotel-manage.com
 import { TripManageComponent } from './management/trip-manage/trip-manage.component';
 import { PromotedTripComponent } from './main-app/promoted-trip/promoted-trip.component';
 import {TripComponent} from './main-app/trip/trip.component';
+import { TripDetailsComponent } from './main-app/trip-details/trip-details.component';
 
 
 const appRoutes: Routes = [
@@ -30,6 +31,9 @@ const appRoutes: Routes = [
   }, {
     path: 'trip',
     component: TripComponent
+  }, {
+    path: 'trip/:id',
+    component: TripDetailsComponent
   }, {
     path: 'management/city',
     component: CityManageComponent
@@ -63,6 +67,7 @@ const appRoutes: Routes = [
     TripManageComponent,
     TripComponent,
     PromotedTripComponent,
+    TripDetailsComponent,
   ],
   imports: [
     BrowserModule,

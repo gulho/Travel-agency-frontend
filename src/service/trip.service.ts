@@ -23,4 +23,12 @@ export class TripService {
   public deleteTrip(trip: Trip) {
     this.httpClient.delete(this.TRIP_SERVICE_URL + trip.id, {}).subscribe(ret => console.log(ret));
   }
+
+  public getPromotedTrips() {
+    return this.httpClient.get(this.TRIP_SERVICE_URL + '/promoted');
+  }
+
+  public getTripById(id: number) {
+    return this.httpClient.get(this.TRIP_SERVICE_URL + '/' + id);
+  }
 }

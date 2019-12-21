@@ -10,6 +10,7 @@ import {MealType} from '../../../model/MealType';
 import {Continent} from '../../../model/Continent';
 import {NgForm} from '@angular/forms';
 import {ImageService} from '../../../service/image.service';
+import {SERVER_URL} from '../../app.module';
 
 @Component({
   selector: 'app-trip-manage',
@@ -31,6 +32,8 @@ export class TripManageComponent implements OnInit {
 
   keys = Object.keys;
   mealTypes = MealType;
+  currentImageId: number;
+  SERVER_URL = SERVER_URL;
 
   constructor(private modalService: NgbModal, private tripService: TripService, private airportService: AirportService,
               private hotelService: HotelService, private imageService: ImageService) { }
@@ -139,5 +142,10 @@ export class TripManageComponent implements OnInit {
       this.images.push(file);
     }
     console.log(this.images);
+  }
+
+  openBigImage(tripImage: TemplateRef<any>, id: number) {
+    this.currentImageId = id;
+    this.modalService.open(tripImage);
   }
 }

@@ -5,7 +5,7 @@
 <div class="col-sm-12">
   <button class="btn btn-primary" (click)="editTrip(tripEdit)">Add</button>
 </div>
-
+<br>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -102,7 +102,7 @@
           <label for="formTripMealType">Meal Type</label>
         </div>
         <div class="col">
-          <select id="formTripMealType" name="formTripMealType" class="form-control">
+          <select id="formTripMealType" name="formTripMealType" class="form-control" [(ngModel)]="tripForEdit.mealType">
             <option *ngFor="let key of keys(mealTypes)" [value]="key" [selected]="key==tripForEdit.mealType">{{mealTypes[key]}}</option>
           </select>
         </div>
@@ -156,6 +156,11 @@
         </div>
       </div>
     </form>
+    <div class="row">
+      <div class="col">
+        <img *ngFor="let image of tripForEdit.images" [src]="SERVER_URL + '/image/' + image.id" width="100px" class="img-thumbnail" (click)="openBigImage(tripImage, image.id)">
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="modal.dismiss()">Cancel</button>
@@ -178,3 +183,16 @@
   </div>
 </ng-template>
 
+<ng-template #tripImage let-modal>
+  <div class="modal-header">
+    <h4>{{tripForEdit.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('X')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body container">
+    <img class="img-fluid" [src]="SERVER_URL + '/image/' + currentImageId" >
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
